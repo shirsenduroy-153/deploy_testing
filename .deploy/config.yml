@@ -1,8 +1,8 @@
-app_name: "deploy_testinghjvgvgf"
+app_name: "deploy_testingiuii"
 framework: "springboot"
 deployment_type: "compose"
 environment: "production"
-port: 8086
+port: 8085
 working_directory: "./"
 install_command: "./mvnw dependency:resolve"
 build_command: "./mvnw clean package -DskipTests"
