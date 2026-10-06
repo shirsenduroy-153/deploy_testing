@@ -20,12 +20,6 @@ jobs:
       - name: 📥 Checkout Repository Source
         uses: actions/checkout@v4
 
-      - name: 🔨 Build Artifacts (Build Application Artifacts)
-        run: |
-          cd ${{ github.workspace }}
-          ./mvnw dependency:resolve
-          ./mvnw clean package -DskipTests
-
       - name: 🚀 Deploy Application (Docker Compose)
         run: |
           cd ${{ github.workspace }}
