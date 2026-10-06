@@ -1,4 +1,4 @@
-app_name: "deploy_testingiuii"
+app_name: "deploy_testingsdssdsdv"
 framework: "springboot"
 deployment_type: "compose"
 environment: "production"
