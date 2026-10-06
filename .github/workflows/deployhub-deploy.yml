@@ -33,4 +33,4 @@ jobs:
       - name: 🩺 Verify Health Check & Status
         run: |
           sleep 3
-          curl -s -f http://127.0.0.1:8899/ || echo 'Service listening on port 8899'
+          curl -s -f http://127.0.0.1:8081/ || echo 'Service listening on port 8081'
