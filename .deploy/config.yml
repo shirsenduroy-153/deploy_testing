@@ -1,0 +1,10 @@
+app_name: "deploy_testingdsasasd"
+framework: "springboot"
+deployment_type: "compose"
+environment: "production"
+port: 8083
+working_directory: "./"
+install_command: "./mvnw dependency:resolve"
+build_command: "./mvnw clean package -DskipTests"
+start_command: "java -jar target/*.jar"
+output_dir: "target"
