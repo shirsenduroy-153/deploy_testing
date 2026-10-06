@@ -32,4 +32,4 @@ jobs:
       - name: 🩺 Verify Health Check & Status
         run: |
           sleep 3
-          curl -s -f http://127.0.0.1:8086/ || echo 'Service listening on port 8086'
+          curl -s -f http://127.0.0.1:8085/ || echo 'Service listening on port 8085'
