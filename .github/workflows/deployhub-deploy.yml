@@ -23,11 +23,8 @@ jobs:
       - name: 🚀 Deploy Application (Docker Compose)
         run: |
           docker compose -f docker-compose.yml down --remove-orphans || true
-          for cname in $(grep -E 'container_name:' docker-compose.yml 2>/dev/null | awk '{print $2}' | tr -d '"\'\r'); do
-            if [ -n "$cname" ]; then
-              docker rm -f "$cname" 2>/dev/null || true
-            fi
-          done
+          docker rm -f $(docker compose -f docker-compose.yml ps -a -q 2>/dev/null) 2>/dev/null || true
+          docker rm -f deploy_testing deploy_testing_container deploy_testing_container 2>/dev/null || true
           docker compose -f docker-compose.yml up --build --force-recreate --remove-orphans -d
 
       - name: 🩺 Verify Health Check & Status
