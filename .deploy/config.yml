@@ -1,4 +1,4 @@
-app_name: "deploy_testingdsasasd"
+app_name: "deploy_testing_sdfidn"
 framework: "springboot"
 deployment_type: "compose"
 environment: "production"
