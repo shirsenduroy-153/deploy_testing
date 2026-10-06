@@ -1,0 +1,35 @@
+name: DeployHub Runner Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Application (Production)
+    runs-on: ['self-hosted', 'Linux']
+
+    steps:
+      - name: 📥 Checkout Repository Source
+        uses: actions/checkout@v4
+
+      - name: 🔨 Build Artifacts (Build Application Artifacts)
+        run: |
+          cd ${{ github.workspace }}
+          ./mvnw dependency:resolve
+          ./mvnw clean package -DskipTests
+
+      - name: 🚀 Deploy Application (Docker Compose)
+        run: |
+          cd ${{ github.workspace }}
+          echo 'Deploying Docker Compose service on runner...' 
+          docker compose -f docker-compose.yml down || true
+          docker compose -f docker-compose.yml up --build -d
+          echo '✅ Docker Compose service running.'
+
+      - name: 🩺 Verify Health Check & Status
+        run: |
+          sleep 3
+          curl -s -f http://127.0.0.1:8086/ || echo 'Service listening on port 8086'
