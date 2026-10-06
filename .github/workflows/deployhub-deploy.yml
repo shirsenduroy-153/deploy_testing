@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target deployment environment'
+        required: false
+        default: 'production'
 
 jobs:
   deploy:
