@@ -20,6 +20,13 @@ jobs:
       - name: 📥 Checkout Repository Source
         uses: actions/checkout@v4
 
+      - name: 🔐 Setup Environment Secrets
+        run: |
+          cat << 'EOF' > .env
+SHIRSENDU123=Password@123
+          EOF
+          chmod 600 .env
+
       - name: 🚀 Deploy Application (Docker Compose)
         run: |
           docker compose -f docker-compose.yml down --remove-orphans || true
