@@ -37,4 +37,4 @@ SHIRSENDU123=Password@123
       - name: 🩺 Verify Health Check & Status
         run: |
           sleep 3
-          curl -s -f http://127.0.0.1:8080/ || echo 'Service listening on port 8080'
+          curl -s -f http://127.0.0.1:8081/ || echo 'Service listening on port 8081'
