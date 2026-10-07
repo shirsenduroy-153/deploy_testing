@@ -20,14 +20,22 @@ jobs:
       - name: 📥 Checkout Repository Source
         uses: actions/checkout@v4
 
+      - name: 🔐 Setup Environment Secrets
+        run: |
+          cat << 'EOF' > .env
+SHIRSENDU123=Password@123
+          EOF
+          chmod 600 .env
+
       - name: 🚀 Deploy Application (Docker Compose)
         run: |
           docker compose -f docker-compose.yml down --remove-orphans || true
           docker rm -f $(docker compose -f docker-compose.yml ps -a -q 2>/dev/null) 2>/dev/null || true
           docker rm -f deploy_testing deploy_testing_container deploy_testing_container 2>/dev/null || true
+          sed -i -E 's/([0-9]+):([0-9]+)/8080:\2/g' docker-compose.yml 2>/dev/null || true
           docker compose -f docker-compose.yml up --build --force-recreate --remove-orphans -d
 
       - name: 🩺 Verify Health Check & Status
         run: |
           sleep 3
-          curl -s -f http://127.0.0.1:8081/ || echo 'Service listening on port 8081'
+          curl -s -f http://127.0.0.1:8080/ || echo 'Service listening on port 8080'
