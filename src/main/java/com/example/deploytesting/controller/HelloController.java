@@ -18,7 +18,7 @@ public class HelloController {
         return getHelloResponse("Deployment Test User");
     }
 
-    @GetMapping("/api/hello")
+    @GetMapping("/api/helloo")
     public ResponseEntity<Map<String, Object>> hello(
             @RequestParam(value = "name", defaultValue = "World") String name) {
         return getHelloResponse(name);
